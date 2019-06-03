@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild} from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { ApiService } from '../api.service';
 import { Album } from 'src/app/models/albums';
 
@@ -13,19 +14,16 @@ export class AlbumsComponent implements OnInit {
   constructor(private _api: ApiService) { }
 
   displayedColumns: string[] = [ 'userId', 'id', 'title'];
-  dataSource: Album[];
+  dataSource: MatTableDataSource<Album>;
 
-  isLoadingResults = true;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
-    this._api.getPosts()
-    .subscribe(res => {
-      this.dataSource = res;
-      console.log(this.dataSource);
-      this.isLoadingResults = false;
+    this._api.getPosts().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     }, err => {
       console.log(err);
-      this.isLoadingResults = false;
     });
   }
 

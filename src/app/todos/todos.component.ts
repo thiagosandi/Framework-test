@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { ApiService } from '../api.service';
 import { Todo } from 'src/app/models/todo';
 
@@ -13,19 +14,16 @@ export class TodosComponent implements OnInit {
   constructor(private _api: ApiService) { }
 
   displayedColumns: string[] = [ 'userId', 'id', 'title', 'completed'];
-  dataSource: Todo[];
-
-  isLoadingResults = true;
+  dataSource: MatTableDataSource<Todo>;
+  
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
-    this._api.getTodos()
-    .subscribe(res => {
-      this.dataSource = res;
-      console.log(this.dataSource);
-      this.isLoadingResults = false;
+    this._api.getTodos().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     }, err => {
       console.log(err);
-      this.isLoadingResults = false;
     });
   }
 

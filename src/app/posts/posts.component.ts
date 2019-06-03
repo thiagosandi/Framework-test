@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { ApiService } from '../api.service';
 import { Post } from 'src/app/models/posts';
 
@@ -9,26 +10,21 @@ import { Post } from 'src/app/models/posts';
   styleUrls: ['./posts.component.css']
 })
 
-
-
 export class PostsComponent implements OnInit {
 
   constructor(private _api: ApiService) { }
 
   displayedColumns: string[] = [ 'userId', 'id', 'title', 'body'];
-  dataSource: Post[];
+  dataSource: MatTableDataSource<Post>;
 
-  isLoadingResults = true;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
-    this._api.getPosts()
-    .subscribe(res => {
-      this.dataSource = res;
-      console.log(this.dataSource);
-      this.isLoadingResults = false;
+    this._api.getPosts().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
     }, err => {
       console.log(err);
-      this.isLoadingResults = false;
     });
   }
 
