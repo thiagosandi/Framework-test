@@ -1,6 +1,11 @@
 <div>
   <h3>Lista de TO-DOs</h3>
 </div>
+
+<mat-form-field>  
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">  
+</mat-form-field>  
+
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
@@ -32,5 +37,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSize]="9" [length]="100" [pageSizeOptions]="[9, 20, 50, 100, 200]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSize]="7" [length]="100" [pageSizeOptions]="[7, 20, 50, 100, 200]" showFirstLastButtons></mat-paginator>
 </div>  

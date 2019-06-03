@@ -8,11 +8,12 @@ import { TodosComponent } from './todos/todos.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
-import { LayoutModule } from '@angular/cdk/layout';
 
-import {  MatAutocompleteModule,
+import { HttpClientModule } from '@angular/common/http';
+
+import {  
+  MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
   MatButtonModule,
@@ -47,7 +48,6 @@ import {  MatAutocompleteModule,
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule } from '@angular/material';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -59,11 +59,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    LayoutModule,
     HttpClientModule,
     MatAutocompleteModule,
     MatBadgeModule,
