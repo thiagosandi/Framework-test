@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
 import { PostsComponent } from './posts/posts.component';
@@ -9,19 +8,21 @@ import { TodosComponent } from './todos/todos.component';
 const routes: Routes = [
   {
     path: 'posts',
-    component: PostsComponent,
-    data: { title: 'Lista de Posts' }
+    component: PostsComponent
   },
   {
     path: 'albums',
-    component: AlbumsComponent,
-    data: { title: 'Lista de Albums' }
+    component: AlbumsComponent
   },
   {
     path: 'todos',
-    component: TodosComponent,
-    data: { title: 'Lista de TO-DOs' }
+    component: TodosComponent
   },
+  {
+    path: '',
+    redirectTo: '/posts',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
