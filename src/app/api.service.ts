@@ -21,26 +21,14 @@ export class ApiService {
 
   getPosts (): Observable<Post[]> {
     return this.http.get<Post[]>(apiUrl + '/posts')
-      .pipe(
-        tap(post => console.log('leu os posts')),
-        catchError(this.handleError('getPosts', []))
-      );
   }
 
   getAlbums (): Observable<Album[]> {
     return this.http.get<Album[]>(apiUrl + '/albums')
-      .pipe(
-        tap(album => console.log('leu o album')),
-        catchError(this.handleError('getAlbums', []))
-      );
   }
 
   getTodos (): Observable<Todo[]> {
     return this.http.get<Todo[]>(apiUrl + '/todos')
-      .pipe(
-        tap(todo => console.log('leu o todo')),
-        catchError(this.handleError('getTodo', []))
-      );
   }
 
   
