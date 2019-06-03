@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { ApiService } from '../api.service';
 import { Todo } from 'src/app/models/todo';
@@ -17,11 +18,13 @@ export class TodosComponent implements OnInit {
   dataSource: MatTableDataSource<Todo>;
   
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   ngOnInit() {
     this._api.getTodos().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;  
     }, err => {
       console.log(err);
     });

@@ -1,30 +1,30 @@
 <div>
-  <h3>Lista de Todos</h3>
+  <h3>Lista de TO-DOs</h3>
 </div>
 <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource" matSort>
 
     <!-- User Id Column -->
     <ng-container matColumnDef="userId">
-      <th mat-header-cell *matHeaderCellDef> User Id </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> User_Id </th>
       <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
     </ng-container>
 
     <!-- Id Column -->
     <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> Id </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
 
     <!-- Completed Column -->
     <ng-container matColumnDef="completed">
-      <th mat-header-cell *matHeaderCellDef> Completed </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Completed </th>
       <td mat-cell *matCellDef="let element"> {{element.completed}} </td>
     </ng-container>
 
@@ -32,5 +32,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <mat-paginator [pageSize]="9" [length]="100" [pageSizeOptions]="[9, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSize]="9" [length]="100" [pageSizeOptions]="[9, 20, 50, 100, 200]" showFirstLastButtons></mat-paginator>
 </div>  
